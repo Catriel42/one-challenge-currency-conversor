@@ -27,4 +27,12 @@ public class ExchangeRateApiClient {
         HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         return gson.fromJson(response.body(), LatestRateResponse.class);
     }
+
+    public PairConversionWithAmountResponse getConversion(String currencyFrom, String currencyTo, String amount) throws IOException, InterruptedException {
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .uri(URI.create(baseUrl + apiKey + "/pair/" + currencyFrom + "/" + currencyTo + "/" + amount))
+                .build();
+        HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+        return gson.fromJson(response.body(), PairConversionWithAmountResponse.class);
+    }
 }

@@ -1,9 +1,11 @@
 package com.catodev;
 
+import com.google.gson.annotations.SerializedName;
+
 public record PairConversionWithAmountResponse(
         String result,
         String baseCode,
         String targetCode,
         double conversionRate,
-        double conversionResult
+        @SerializedName("conversion_result") double conversionResult
 ) {}

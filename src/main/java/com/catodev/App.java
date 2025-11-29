@@ -17,16 +17,9 @@ public class App
         String currencyTo = scanner.nextLine();
         System.out.println("Enter amount: ");
         String amount = scanner.nextLine();
-        String url = "https://v6.exchangerate-api.com/v6/f4f0e83a4f2fab1bf8bc33ea/pair/"+currencyFrom+"/"+currencyTo+"/"+amount;
 
-        HttpClient client = HttpClient.newHttpClient();
-
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .build();
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.statusCode());
-        System.out.println(response.body());
+        ExchangeRateApiClient exchangeRateApiClient = new ExchangeRateApiClient("f4f0e83a4f2fab1bf8bc33ea");
+        PairConversionWithAmountResponse response = exchangeRateApiClient.getConversion(currencyFrom, currencyTo, amount);
+        System.out.println(response.conversionResult());
     }
 }
