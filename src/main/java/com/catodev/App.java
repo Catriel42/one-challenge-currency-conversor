@@ -1,12 +1,10 @@
 package com.catodev;
 
+import com.catodev.client.ExchangeRateApiClient;
+import com.catodev.controller.CurrencyConversorApp;
+import com.catodev.service.ConversorCurrencyService;
+
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.Map;
-import java.util.Scanner;
 
 public class App 
 {

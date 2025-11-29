@@ -1,4 +1,6 @@
-package com.catodev;
+package com.catodev.service;
+
+import com.catodev.client.ExchangeRateApiClient;
 
 import java.util.Map;
 

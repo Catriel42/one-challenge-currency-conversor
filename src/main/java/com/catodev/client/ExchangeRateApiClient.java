@@ -1,5 +1,7 @@
-package com.catodev;
+package com.catodev.client;
 
+import com.catodev.dto.LatestRateResponse;
+import com.catodev.dto.PairConversionWithAmountResponse;
 import com.google.gson.Gson;
 
 import java.io.IOException;

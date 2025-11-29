@@ -1,4 +1,4 @@
-package com.catodev;
+package com.catodev.dto;
 
 import com.google.gson.annotations.SerializedName;
 

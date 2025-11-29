@@ -1,4 +1,6 @@
-package com.catodev;
+package com.catodev.controller;
+
+import com.catodev.service.ConversorCurrencyService;
 
 import java.util.Map;
 import java.util.Scanner;
