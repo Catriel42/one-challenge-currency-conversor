@@ -1,6 +1,7 @@
 package com.catodev.service;
 
 import com.catodev.client.ExchangeRateApiClient;
+import com.catodev.log.HistoryLogger;
 
 import java.util.Map;
 
@@ -13,9 +14,11 @@ public class ConversorCurrencyService {
 
     public double getConversion(String currencyFrom, String currencyTo, String amount) {
         try {
-            return exchangeRateApiClient
+            double result =  exchangeRateApiClient
                     .getConversion(currencyFrom, currencyTo, amount)
                     .conversionResult();
+            HistoryLogger.logConversion("USD", "EUR", amount, result);
+            return result;
         } catch (Exception e) {
             throw new RuntimeException("Error while converting currency", e);
         }
