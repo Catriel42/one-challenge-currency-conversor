@@ -34,10 +34,13 @@ This project is a simple command-line application for currency conversion, devel
     ```
 
 2.  **Get an API Key:**
-    - Sign up at [ExchangeRate-API](https://www.exchangerate-api.com/) to get a free API key.
+    - Sign up at [ExchangeRate-API](https://www.exchangerate-api.com/) to get a free API key, you need to create an account.
 
 3.  **Configure the API Key:**
-    - The application expects the API key to be hardcoded in `src/main/java/com/catodev/App.java`. Open this file and replace the placeholder with your actual key.
+    - Create a file named `config.properties` inside the `src/main/resources/` directory.
+    - You can use `src/main/resources/config.properties.example` as a template.
+    - Open `config.properties` and replace `your_api_key` with your actual API key obtained from ExchangeRate-API.
+    - **Important:** Ensure `config.properties` is added to your `.gitignore` file to prevent committing your API key to version control.
 
 4.  **Build the project:**
     - You need Maven installed. Run the following command from the project's root directory:
