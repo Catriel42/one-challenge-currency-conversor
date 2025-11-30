@@ -41,9 +41,9 @@ public class CurrencyConversorApp {
 
     private void convertCurrency() {
         System.out.println("Introduce la moneda de origen (ejem.: USD): ");
-        String currencyFrom = scanner.nextLine();
+        String currencyFrom = scanner.nextLine().toUpperCase();
         System.out.println("Introduce la moneda de destino (ejem.: EUR): ");
-        String currencyTo = scanner.nextLine();
+        String currencyTo = scanner.nextLine().toUpperCase();
         System.out.println("Introduce la cantidad a convertir: ");
         String amount = scanner.nextLine();
         double result = conversorCurrencyService.getConversion(currencyFrom, currencyTo, amount);
