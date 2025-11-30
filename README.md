@@ -14,6 +14,7 @@ This project is a simple command-line application for currency conversion, devel
 - **Real-time Currency Conversion:** Converts an amount from one currency to another.
 - **Dynamic Exchange Rates:** Fetches the latest exchange rates from an external API.
 - **Interactive CLI:** A simple and interactive command-line interface to guide the user.
+- **Conversion History Logging:** Automatically logs each currency conversion performed by the user into a file named `conversion_history.txt` in the project's root directory.
 
 ## How to Run
 
