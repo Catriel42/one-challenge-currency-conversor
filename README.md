@@ -58,6 +58,11 @@ This project is a simple command-line application for currency conversion, devel
 - **Maven**
 - **Google Gson:** For parsing JSON responses from the API.
 
+# DEMO!
+
+https://github.com/user-attachments/assets/4c6b8977-7599-4210-9c79-74b3cafdcd00
+
+
 Enjoy!
 
 ---
