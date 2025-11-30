@@ -17,7 +17,7 @@ public class ConversorCurrencyService {
             double result =  exchangeRateApiClient
                     .getConversion(currencyFrom, currencyTo, amount)
                     .conversionResult();
-            HistoryLogger.logConversion("USD", "EUR", amount, result);
+            HistoryLogger.logConversion(currencyFrom, currencyTo, amount, result);
             return result;
         } catch (Exception e) {
             throw new RuntimeException("Error while converting currency", e);
