@@ -1,11 +1,10 @@
 # ONE Challenge - Currency Converter
-<div>
 
 ![Java](https://img.shields.io/badge/Java-17-blue?style=for-the-badge&logo=openjdk)
 ![Maven](https://img.shields.io/badge/Built%20with-Maven-red?style=for-the-badge&logo=apache-maven)
+![Gson](https://img.shields.io/badge/Gson-2.13.2-blue?style=for-the-badge&logo=google)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-</div>
 
 This project is a simple command-line application for currency conversion, developed as part of the "ONE Challenge - Java - Back end" program. It allows users to convert amounts between different currencies using real-time exchange rates from the ExchangeRate-API.
 
