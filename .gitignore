@@ -2,3 +2,4 @@
 /target
 commit.txt
 conversion_history.txt
+/src/main/resources/config.properties
