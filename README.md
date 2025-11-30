@@ -133,6 +133,10 @@ The application uses two main endpoints from the [ExchangeRate-API](https://www.
 - **Apache Maven:** For project build and dependency management.
 - **Google Gson:** For parsing JSON responses from the API.
 
+## Demo
+
+https://github.com/user-attachments/assets/a6c44efd-a00a-4602-97f0-04b4c9d6e2af
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
