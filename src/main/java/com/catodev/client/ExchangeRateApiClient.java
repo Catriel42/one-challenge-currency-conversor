@@ -9,6 +9,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 
 public class ExchangeRateApiClient {
     private final String apiKey;
@@ -22,19 +23,33 @@ public class ExchangeRateApiClient {
         this.gson = new Gson();
     }
 
-    public LatestRateResponse getLatestRate(String currency) throws IOException, InterruptedException {
-        HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create(baseUrl + apiKey + "/latest/" + currency))
+    /**
+     * Generic method to get data from the API
+     * @param endpoint
+     * @param responseType
+     * @return
+     * @param <T>
+     * @throws Exception
+     */
+    private <T> T get(String endpoint, Class<T> responseType) throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(baseUrl + apiKey + endpoint))
                 .build();
-        HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        return gson.fromJson(response.body(), LatestRateResponse.class);
+        HttpResponse<String> response = httpClient.send(
+                request,
+                HttpResponse.BodyHandlers.ofString()
+        );
+        if (response.statusCode() != 200) {
+            throw new RuntimeException("Error en la API: " + response.statusCode());
+        }
+        return gson.fromJson(response.body(), responseType);
     }
 
-    public PairConversionWithAmountResponse getConversion(String currencyFrom, String currencyTo, String amount) throws IOException, InterruptedException {
-        HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create(baseUrl + apiKey + "/pair/" + currencyFrom + "/" + currencyTo + "/" + amount))
-                .build();
-        HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        return gson.fromJson(response.body(), PairConversionWithAmountResponse.class);
+    public LatestRateResponse getLatestRate(String currency) throws Exception {
+        return get("/latest/" + currency, LatestRateResponse.class);
+    }
+
+    public PairConversionWithAmountResponse getConversion(String currencyFrom, String currencyTo, String amount) throws Exception {
+        return get("/pair/" + currencyFrom + "/" + currencyTo + "/" + amount, PairConversionWithAmountResponse.class);
     }
 }
