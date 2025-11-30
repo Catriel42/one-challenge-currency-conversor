@@ -26,6 +26,7 @@ public class ConversorCurrencyService {
 
     public Map<String, Double> getLatestRate(String currency)  {
         try {
+            HistoryLogger.logLatestRate(currency);
             return exchangeRateApiClient.getLatestRate(currency).conversionRates();
         } catch (Exception e) {
             throw new RuntimeException(e);

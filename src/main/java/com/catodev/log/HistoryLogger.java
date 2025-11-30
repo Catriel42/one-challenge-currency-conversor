@@ -23,4 +23,16 @@ public class HistoryLogger {
             System.out.println("Error save history: " + e.getMessage());
         }
     }
+
+    public static void logLatestRate(String fromCurrency) {
+        String log = String.format("%s - User request latest rates to %s%n",
+                LocalDateTime.now().format(FORMATTER),
+                fromCurrency);
+
+        try (FileWriter writer = new FileWriter(FILE, true)) {
+            writer.write(log);
+        } catch (IOException e) {
+            System.out.println("Error save history: " + e.getMessage());
+        }
+    }
 }
