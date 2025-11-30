@@ -2,11 +2,12 @@ package com.catodev.controller;
 
 import com.catodev.service.ConversorCurrencyService;
 
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
 public class CurrencyConversorApp {
-    private ConversorCurrencyService conversorCurrencyService;
+    private final ConversorCurrencyService conversorCurrencyService;
     private final Scanner scanner = new Scanner(System.in);
     private boolean running = true;
 
@@ -18,18 +19,20 @@ public class CurrencyConversorApp {
         System.out.println("=== CONVERSOR DE MONEDAS ===");
 
         do {
-            System.out.println("\n1. Convertir moneda");
-            System.out.println("2. Ver todas las tasas");
-            System.out.println("3. Salir");
+            System.out.println("\n1. Conversiones específicas");
+            System.out.println("2. Convierte cualquier moneda a otra");
+            System.out.println("3. Ver todas las tasas de una moneda");
+            System.out.println("4. Salir");
             System.out.print("Opción: ");
 
             String option = scanner.nextLine();
 
 
             switch (option) {
-                case "1" -> convertCurrency();
-                case "2" -> showAllRates();
-                case "3" -> {
+                case "1" -> specificConversions();
+                case "2" -> convertCurrency();
+                case "3" -> showAllRates();
+                case "4" -> {
                     System.out.println("¡Hasta luego!");
                     running = false;
                 }
@@ -37,6 +40,44 @@ public class CurrencyConversorApp {
             }
         }
         while (running);
+    }
+
+    private void specificConversions() {
+        String baseCode = "";
+        String targetCode = "";
+        System.out.println("""
+                --- Conversiones Específicas ---
+                1. Dólar (USD) =>> Peso Argentino (ARS)
+                2. Peso Argentino (ARS) =>> Dólar (USD)
+                3. Dólar (USD) =>> Real Brasileño (BRL)
+                4. Real Brasileño (BRL) =>> Dólar (USD)
+                5. Dólar (USD) =>> Peso Colombiano (COP)
+                6. Peso Colombiano (COP) =>> Dólar (USD)
+                """);
+        System.out.print("Elija una opción: ");
+        try {
+            String option = scanner.nextLine();
+
+            switch (option){
+                case "1" -> { baseCode = "USD"; targetCode = "ARS"; }
+                case "2" -> { baseCode = "ARS"; targetCode = "USD"; }
+                case "3" -> { baseCode = "USD"; targetCode = "BRL"; }
+                case "4" -> { baseCode = "BRL"; targetCode = "USD"; }
+                case "5" -> { baseCode = "USD"; targetCode = "COP"; }
+                case "6" -> { baseCode = "COP"; targetCode = "USD"; }
+                default -> {
+                    System.out.println("Opción no válida");
+                    return;
+                }
+            }
+            System.out.print("Introduce la cantidad a convertir: ");
+            String amount = scanner.nextLine();
+            double result = conversorCurrencyService.getConversion(baseCode, targetCode, amount);
+            System.out.printf("El resultado de la conversión de %s %s a %s es: %.2f%n", amount, baseCode, targetCode, result);
+        }catch (InputMismatchException e){
+            System.out.println("Opción inválida, por favor elija una opción del menú");
+            scanner.nextLine();
+        }
     }
 
     private void convertCurrency() {
@@ -47,7 +88,7 @@ public class CurrencyConversorApp {
         System.out.println("Introduce la cantidad a convertir: ");
         String amount = scanner.nextLine();
         double result = conversorCurrencyService.getConversion(currencyFrom, currencyTo, amount);
-        System.out.println(result);
+        System.out.printf("El resultado de la conversion de %s %s a %s es: %.2f%n", amount, currencyFrom, currencyTo, result);
     }
 
     private void showAllRates() {
